@@ -1,0 +1,4 @@
+Flask==3.0.3
+gunicorn==23.0.0
+# Remplace TON_USER et le tag par les tiens
+auth-client @ git+https://github.com/Mortdu-web/auth.git@v0.1.0#subdirectory=client

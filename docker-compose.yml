@@ -1,0 +1,14 @@
+services:
+  hub-app:
+    build: .
+    container_name: hub-app
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "5001:5000"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
