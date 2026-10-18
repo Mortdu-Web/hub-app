@@ -44,20 +44,24 @@ def render(title):
 def home():
     return render("hub-app : bienvenue 🎉")
 
-
 @bp.get("/admin")
 @require_auth("admin")
-def other():
-    return render("hub-app : zone other")
+def admin():
+    return render("hub-app : zone admin")
 
 @bp.get("/other")
 @require_auth("other")
-def admin():
-    return render("hub-app : zone admin")
+def other():
+    return render("hub-app : zone other")
 
 @bp.get("/health")
 def health():
     return {"status": "ok"}
+
+@bp.get("/whoami")
+@require_auth()
+def whoami():
+    return g.user   # doit contenir username, email, roles
 
 
 app = Flask(__name__)
