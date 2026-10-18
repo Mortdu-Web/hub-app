@@ -1,11 +1,15 @@
 import os
 
-from flask import Flask, g, render_template_string
+from flask import Blueprint, Flask, g, render_template_string
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 from auth_client import require_auth
 
-app = Flask(__name__)
-AUTH_PUBLIC_URL = os.environ.get("AUTH_PUBLIC_URL", "http://localhost:5000").rstrip("/")
-PUBLIC_URL = os.environ.get("PUBLIC_URL", "http://localhost:5001").rstrip("/")
+URL_PREFIX = os.environ.get("URL_PREFIX", "/hub-app").rstrip("/")
+AUTH_PUBLIC_URL = os.environ.get("AUTH_PUBLIC_URL", "http://localhost:25000/auth").rstrip("/")
+PUBLIC_URL = os.environ.get("PUBLIC_URL", "http://localhost:25001/hub-app").rstrip("/")
+
+bp = Blueprint("hub", __name__)
 
 PAGE = """
 <!doctype html>
@@ -16,8 +20,8 @@ PAGE = """
   <p>Connecté en tant que <strong>{{ user.username }}</strong> ({{ user.email or "pas d'email" }})</p>
   <p>Rôles : {{ user.roles | join(", ") or "aucun" }}</p>
   <p>
-    <a href="/">Accueil (connexion requise)</a> ·
-    <a href="/admin">Page admin (rôle « admin » requis)</a> ·
+    <a href="{{ url_for('hub.home') }}">Accueil (connexion requise)</a> ·
+    <a href="{{ url_for('hub.admin') }}">Page admin (rôle « admin » requis)</a> ·
     <a href="{{ logout_url }}">Se déconnecter</a>
   </p>
 </body>
@@ -34,18 +38,23 @@ def render(title):
     )
 
 
-@app.get("/")
+@bp.get("/")
 @require_auth()
 def home():
     return render("hub-app : bienvenue 🎉")
 
 
-@app.get("/admin")
+@bp.get("/admin")
 @require_auth("admin")
 def admin():
     return render("hub-app : zone admin")
 
 
-@app.get("/health")
+@bp.get("/health")
 def health():
     return {"status": "ok"}
+
+
+app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+app.register_blueprint(bp, url_prefix=URL_PREFIX)
