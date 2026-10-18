@@ -22,6 +22,7 @@ PAGE = """
   <p>
     <a href="{{ url_for('hub.home') }}">Accueil (connexion requise)</a> ·
     <a href="{{ url_for('hub.admin') }}">Page admin (rôle « admin » requis)</a> ·
+    <a href="{{ url_for('hub.other') }}">Page admin (rôle « other » requis)</a> ·
     <a href="{{ logout_url }}">Se déconnecter</a>
   </p>
 </body>
@@ -46,9 +47,13 @@ def home():
 
 @bp.get("/admin")
 @require_auth("admin")
+def other():
+    return render("hub-app : zone other")
+
+@bp.get("/other")
+@require_auth("other")
 def admin():
     return render("hub-app : zone admin")
-
 
 @bp.get("/health")
 def health():
