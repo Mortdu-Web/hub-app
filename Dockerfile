@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends git \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app.py .
+COPY app.py config.json ./
+COPY templates ./templates
 
 RUN useradd --create-home appuser
 USER appuser

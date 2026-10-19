@@ -1,0 +1,21 @@
+{
+  "title": "Mes applications",
+  "apps": [
+    {
+      "name": "Game Hub",
+      "description": "Hub de jeux de société et compteurs de points",
+      "icon": "🎲",
+      "url": "${GAME_HUB_URL}"
+    }, {
+      "name": "HedgeDoc",
+      "description": "Outil d'édition markdown en ligne à plusieurs",
+      "icon": "",
+      "url": "${HEDGEDOC_URL}"
+    }, {
+      "name": "Wiki.js",
+      "description": "Outil d'édition de wiki en ligne",
+      "icon": "",
+      "url": "${WIKIJS_URL}"
+    }
+  ]
+}
