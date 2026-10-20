@@ -16,6 +16,11 @@
       "description": "Outil d'édition de wiki en ligne",
       "icon": "",
       "url": "${WIKIJS_URL}"
+    }, {
+      "name": "Nextcloud",
+      "description": "Cloud personnel autoHébergé",
+      "icon": "",
+      "url": "${NEXTCLOUD_URL}"
     }
   ]
 }
