@@ -21,6 +21,11 @@
       "description": "Cloud personnel autoHébergé",
       "icon": "",
       "url": "${NEXTCLOUD_URL}"
+    }, {
+      "name": "Statistiques",
+      "description": "Statistiques de jeux",
+      "icon": "",
+      "url": "${GAME_STATS_URL}"
     }
   ]
 }
