@@ -36,6 +36,11 @@
       "description": "Gestion des taches",
       "icon": "",
       "url": "${TASKS_URL}"
+    }, {
+      "name": "Transfer de fichier",
+      "description": "transfer de fichier chiffré",
+      "icon": "",
+      "url": "${FILES_TRANSFER_URL}"
     }
   ]
 }
