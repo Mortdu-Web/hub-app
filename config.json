@@ -31,6 +31,11 @@
       "description": "Gestion des serveurs de jeux",
       "icon": "",
       "url": "${PTERODACTYL_URL}"
+    }, {
+      "name": "Gestion de taches",
+      "description": "Gestion des taches",
+      "icon": "",
+      "url": "${TASKS_URL}"
     }
   ]
 }
