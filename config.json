@@ -26,6 +26,11 @@
       "description": "Statistiques de jeux",
       "icon": "",
       "url": "${GAME_STATS_URL}"
+    }, {
+      "name": "Servers de jeux",
+      "description": "Gestion des serveurs de jeux",
+      "icon": "",
+      "url": "${PTERODACTYL_URL}"
     }
   ]
 }
